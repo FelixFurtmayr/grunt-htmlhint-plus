@@ -1,0 +1,4 @@
+- reconstruct task code. it's just messy
+- use AVA to do test
+- update README
+- publish as 1.0.0 since break change

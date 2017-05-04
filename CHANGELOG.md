@@ -1,0 +1,22 @@
+- Ver 0.4.3 Changes the default for logging to not include successful files; moves success to verbose
+- Ver 0.4.2 Merge [PR](https://github.com/poppinlp/grunt-htmlhint-plus/pull/15)
+- Ver 0.4.1 Bugfix for [issue](https://github.com/poppinlp/grunt-htmlhint-plus/issues/12)
+- Ver 0.4.0 Adds the option to output the error reports to files
+- Ver 0.3.0 Adds the option to extend the default rules instead of overriding them
+- Ver 0.2.0 Adds the option to load custom HTMLHint rules
+- Ver 0.1.0
+    - Use [file-changed](https://github.com/poppinlp/file-changed) to do newer job
+    - Reconstruct whole project, make it easy to use
+- Ver 0.0.7 Remove `django` option; Add `ignore` option to support it and more; Fix some bugs; Add default rules
+- Ver 0.0.6 Update `dir2pattern` to 0.0.4
+- Ver 0.0.5 Bugfix
+- Ver 0.0.4
+    - Fix README
+    - Bugfix about `filter.cwd`
+    - Update `dir2pattern` to 0.0.3 to fix bug
+- Ver 0.0.3
+    - Support `newer` config option
+    - Support file path pattern
+    - Support path filter
+- Ver 0.0.2 Fix global options not work
+- Ver 0.0.1 Main

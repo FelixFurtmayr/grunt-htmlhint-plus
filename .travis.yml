@@ -1,7 +1,5 @@
 language: node_js
 node_js:
-    - iojs
-    - "stable"
-
-before_script:
-    - npm install -g grunt-cli
+    - "4"
+    - "6"
+    - "node"

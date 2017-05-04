@@ -4,7 +4,7 @@
 [![Dependency Status](https://david-dm.org/poppinlp/grunt-htmlhint-plus.svg)](https://david-dm.org/poppinlp/grunt-htmlhint-plus)
 [![devDependency Status](https://david-dm.org/poppinlp/grunt-htmlhint-plus/dev-status.svg)](https://david-dm.org/poppinlp/grunt-htmlhint-plus#info=devDependencies)
 
-Grunt task to hint html code.
+Grunt task to hint html code. Support template.
 
 ## Getting Started
 
@@ -14,6 +14,12 @@ If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out th
 
 ```shell
 npm install grunt-htmlhint-plus --save-dev
+```
+
+or maybe you like `yarn`:
+
+```shell
+yarn add grunt-htmlhint-plus
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
@@ -32,50 +38,88 @@ Task targets, files and options may be specified according to the grunt [Configu
 
 ### src {String|Array}
 
-Source path. Support file path, glob and globs.
+Default: `**/*.html`
+
+Specify source file location. Support glob.
 
 ### options.rules {Object}
 
-Htmlhint rules. Default is:
+Default:
+```yml
+tagname-lowercase: true
+attr-lowercase: true
+attr-value-double-quotes: true
+attr-value-not-empty: true
+attr-no-duplication: true
+doctype-first: true
+tag-pair: true
+tag-self-close: false
+spec-char-escape: true
+id-unique: true
+src-not-empty: true
+head-script-disabled: false
+img-alt-require: true
+doctype-html5: true
+id-class-value: dash
+style-disabled: false
+space-tab-mixed-disabled: true
+id-class-ad-disabled: true
+href-abs-or-rel: true
+attr-unsafe-chars: true
+```
 
-- "tagname-lowercase": true,
-- "attr-lowercase": true,
-- "attr-value-double-quotes": true,
-- "attr-value-not-empty": true,
-- "attr-no-duplication": true,
-- "doctype-first": true,
-- "tag-pair": true,
-- "tag-self-close": false,
-- "spec-char-escape": true,
-- "id-unique": true,
-- "src-not-empty": true,
-- "head-script-disabled": false,
-- "img-alt-require": true,
-- "doctype-html5": true,
-- "id-class-value": "dash",
-- "style-disabled": false,
-- "space-tab-mixed-disabled": true,
-- "id-class-ad-disabled": true,
-- "href-abs-or-rel": true,
-- "attr-unsafe-chars": true
-
-For the whole rules list, please see [Rules page](https://github.com/yaniswang/HTMLHint/wiki/Rules).
+Specify hint rules. [Supported rules list](https://github.com/yaniswang/HTMLHint/wiki/Rules).
 
 ### options.htmlhintrc {String}
 
-Htmlhintrc file path. Has higher priority than `rules` option.
+Default: `undefined`
+
+Specify rules file path. This option has higher priority than `rules` option.
 
 ### options.force {Boolean}
 
-Throw fatal fail or not at the end of this task, when there is hint error. Default `false`.
+Default: `false`
+
+Whether to throw fatal or not at the end of this task if hint error occur.
 
 ### options.newer {Boolean}
 
-Only hint changed file and new file. Default `true`.
+Default: `true`
+
+Only hint changed file and new file.
 
 ### options.ignore {Object}
 
-Ignore strings between key and value from this object. Default `{}`.
+Default: `{}`
+
+Hint task will ignore strings between key-value pair from this object.
+
+For example:
+
+```js
+// Project configuration
+...
+ignore: {
+	'{{': '}}'
+}
+...
+```
+
+```html
+<!-- HTML file -->
+...
+<a href="foo" class="c1 c2 {{variable from template engine}}">bar</a>
+...
+```
+
+will be hint as
+
+```html
+<!-- HTML file -->
+...
+<a href="foo" class="c1 c2 ">bar</a>
+...
+```
 
 ### options.customRules {Array}
 
@@ -159,27 +203,6 @@ Run the test demo:
 grunt test
 ```
 
-## History
+## Changelog
 
-- Ver 0.4.3 Changes the default for logging to not include successful files; moves success to verbose
-- Ver 0.4.2 Merge [PR](https://github.com/poppinlp/grunt-htmlhint-plus/pull/15)
-- Ver 0.4.1 Bugfix for [issue](https://github.com/poppinlp/grunt-htmlhint-plus/issues/12)
-- Ver 0.4.0 Adds the option to output the error reports to files
-- Ver 0.3.0 Adds the option to extend the default rules instead of overriding them
-- Ver 0.2.0 Adds the option to load custom HTMLHint rules
-- Ver 0.1.0
-    - Use [file-changed](https://github.com/poppinlp/file-changed) to do newer job
-    - Reconstruct whole project, make it easy to use
-- Ver 0.0.7 Remove `django` option; Add `ignore` option to support it and more; Fix some bugs; Add default rules
-- Ver 0.0.6 Update `dir2pattern` to 0.0.4
-- Ver 0.0.5 Bugfix
-- Ver 0.0.4
-    - Fix README
-    - Bugfix about `filter.cwd`
-    - Update `dir2pattern` to 0.0.3 to fix bug
-- Ver 0.0.3
-    - Support `newer` config option
-    - Support file path pattern
-    - Support path filter
-- Ver 0.0.2 Fix global options not work
-- Ver 0.0.1 Main
+See [CHANGELOG.md](https://github.com/poppinlp/grunt-htmlhint-plus/blob/master/CHANGELOG.md).
